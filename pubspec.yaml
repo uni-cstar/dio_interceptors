@@ -1,8 +1,8 @@
-name: dio_interceptors
-description: A new Flutter package.
+name: dio_ext
+description: An extensions for Dio.
 version: 0.0.1
-author: SuperLuo
-homepage:
+#author: SuperLuo
+homepage: https://github.com/SupLuo/dio_interceptors
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

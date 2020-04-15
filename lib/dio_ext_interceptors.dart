@@ -1,9 +1,17 @@
-library dio_interceptors;
+library dio_ext_interceptors;
 
 import 'package:dio/dio.dart';
 
+///日志拦截器
+///类似如下效果：
+///Http: --> GET https://www.baidu.com/wd=sdsdf
+///Http: Headers:{content-type: application/json; charset=utf-8}
+///Http: --> END GET
+///Http: <-- 200 OK https://www.baidu.com/wd=sdsdf (649ms)
+///Http:{the response：Omitted because there is too much content}
+///Http: <-- END HTTP
 class DioLogInterceptor extends InterceptorsWrapper {
-  static const _keyExecutionTime = "_keyExecutionTime";
+  static const _keyExecutionTime = "_keyExecutionTime_";
 
   String tag = "Http";
 
@@ -76,7 +84,7 @@ class DioLogInterceptor extends InterceptorsWrapper {
           "${_executionTime(err.request.extra[_keyExecutionTime] ?? 0)}");
       print("$tag: ${err.toString()}");
     }
-    print("$tag: <--  END HTTP");
+    print("$tag: <-- END HTTP");
     return err;
   }
 
@@ -88,7 +96,24 @@ class DioLogInterceptor extends InterceptorsWrapper {
     if (printResponseHeader) print("$tag: Headers:${response.headers}");
     if (printTime) print("$tag: Date:${DateTime.now().toString()}");
     print("$tag: ${response.toString()}");
-    print("$tag: <--  END HTTP");
+    print("$tag: <-- END HTT");
     return response;
+  }
+}
+
+class HeaderInterceptor extends InterceptorsWrapper{
+
+  Map<String,String> extraHeaders = new Map();
+
+  HeaderInterceptor({this.extraHeaders}){
+    if(extraHeaders == null){
+      extraHeaders = new Map();
+    }
+  }
+
+  @override
+  Future onRequest(RequestOptions options) async{
+    options.headers['']="";
+    return options;
   }
 }
