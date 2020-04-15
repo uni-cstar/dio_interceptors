@@ -2,12 +2,29 @@
 
 基于Dio的功能扩展，比如拦截器、简易客户端等。
 
-### 配置    
+### 配置  
+[详细说明](https://pub.dev/packages/dio_ext#-installing-tab-)
+
+Use this package as a library
+1. Depend on it
+Add this to your package's pubspec.yaml file:
 ```
-//在工程的yaml文件中添加一下依赖
 dependencies:
-    dio_interceptors: ^0.0.1
+  dio_ext: ^0.0.1
 ```
+2. Install it
+You can install packages from the command line:
+with Flutter:
+```
+$ flutter pub get
+```
+Alternatively, your editor might support flutter pub get. Check the docs for your editor to learn more.
+
+3. Import it
+Now in your Dart code, you can use:
+
+`import 'package:dio_ext/dio_ext_interceptors.dart';`
+
 ### 使用
 
 #### 拦截器（Interceptors）
